@@ -1,0 +1,24 @@
+{
+  "name": "react-vegas-talk",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "seanstrom",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "parcel build ./src/index.html",
+    "start": "http-server -p 1234 ./dist"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "parcel-bundler": "^1.11.0"
+  },
+  "dependencies": {
+    "grommet": "^2.3.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "styled-components": "^4.1.3"
+  }
+}
