@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Grommet, Box, grommet } from 'grommet';
 
+import { ActionTypes, wrapAction } from './actions';
 import { Counter } from '../modules/counter';
 import { decrement, increment } from '../modules/counter/actions';
 
@@ -49,7 +50,8 @@ const App = props => {
 
     return (
         <Layout>
-            <Counter actions={actions} model={model} />
+            <Counter actions={actions.counterA} model={model.counterA} />
+            <Counter actions={actions.counterB} model={model.counterB} />
         </Layout>
     );
 };
@@ -63,10 +65,17 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-    actions: bindActionCreators({
-        decrement,
-        increment
-    }, dispatch),
+    actions: {
+        counterA: bindActionCreators({
+            increment: wrapAction(ActionTypes.CounterA, increment),
+            decrement: wrapAction(ActionTypes.CounterA, decrement)
+        }, dispatch),
+
+        counterB: bindActionCreators({
+            increment: wrapAction(ActionTypes.CounterB, increment),
+            decrement: wrapAction(ActionTypes.CounterB, decrement)
+        }, dispatch)
+    },
 });
 
 const ConnectedApp = connect(mapState, mapDispatch)(App);
